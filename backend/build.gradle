@@ -1,0 +1,58 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.5'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.aitqdk'
+version = '0.2.1'
+description = 'AI TQDK / Magistr - Spring Boot backend (Java 21)'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    pdfboxVersion = '3.0.3'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    runtimeOnly 'org.postgresql:postgresql'
+    runtimeOnly 'com.h2database:h2'
+
+    implementation 'org.mindrot:jbcrypt:0.4'
+    implementation "org.apache.pdfbox:pdfbox:${pdfboxVersion}"
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Fayl dəyişəndə tam JVM restart yox, sürətli class-reload edir (kod dəyişdikcə
+    // 20s-lik tam başlanğıc yerinə bir neçə saniyəlik yenidən yükləmə).
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    // Hər test öz GİRİŞ → ÇIXIŞ blokunu çap edir (TestIo) — konsolda görünsün.
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+        showStandardStreams = true
+        exceptionFormat = 'full'
+    }
+}
+
+bootJar {
+    archiveFileName = 'magistr.jar'
+}

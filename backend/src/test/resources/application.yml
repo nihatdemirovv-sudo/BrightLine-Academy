@@ -1,0 +1,40 @@
+# Test konfiqurasiyası — src/main/resources/application.yml-i (git-də olmayan, real açarlı fayl)
+# test classpath-ında tam ƏVƏZ edir. Heç bir real açar/şifrə yoxdur: baza yaddaşda (H2),
+# AI isə testin öz saxta serveridir (FakeAiController, ünvanı E2eTestBase dinamik təyin edir).
+logging:
+  level:
+    root: WARN
+
+spring:
+  main:
+    banner-mode: "off"
+  application:
+    name: ai-tqdk-magistr-test
+  threads:
+    virtual:
+      enabled: true
+  jackson:
+    default-property-inclusion: non_null
+  datasource:
+    url: jdbc:h2:mem:e2e;MODE=PostgreSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    open-in-view: false
+
+app:
+  cors:
+    allowed-origins: http://localhost:3000
+  ai:
+    base-url: http://localhost:0/fake-ai
+    api-key: test-key
+    chat-model: fake-model
+    max-tokens: 16000
+    max-retries: 0
+  ytdlp:
+    bin: yt-dlp
+  data-dir: ./build/test-data

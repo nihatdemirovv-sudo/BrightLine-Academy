@@ -1,0 +1,74 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ai-tqdk-magistr
+  threads:
+    virtual:
+      enabled: true
+  profiles:
+    active: postgres
+  jackson:
+    default-property-inclusion: non_null
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 25MB
+
+app:
+  cors:
+    allowed-origins: http://localhost:3000
+  ai:
+    base-url: https://generativelanguage.googleapis.com/v1beta/openai
+    api-key: "REPLACE_WITH_GEMINI_API_KEY"
+    audio-base-url: "https://api.openai.com/v1"
+    audio-api-key: "REPLACE_WITH_OPENAI_API_KEY"
+    chat-model: gemini-3.8-flash
+    reasoning-effort: medium
+    max-tokens: 16000
+    transcription-model: whisper-1
+    tts-model: tts-1
+    tts-voice: alloy
+    max-retries: 4
+  ytdlp:
+    bin: yt-dlp
+  data-dir: ./data
+
+---
+spring:
+  config:
+    activate:
+      on-profile: postgres
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tqdk?currentSchema=student
+    username: postgres
+    password: "REPLACE_WITH_DB_PASSWORD"
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: false
+    show-sql: false
+    open-in-view: false
+
+---
+spring:
+  config:
+    activate:
+      on-profile: h2
+  datasource:
+    url: jdbc:h2:file:./db/magistr;MODE=PostgreSQL;DATABASE_TO_UPPER=false
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+  h2:
+    console:
+      enabled: true

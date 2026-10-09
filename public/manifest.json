@@ -1,0 +1,61 @@
+{
+  "name": "BrightLine Academy",
+  "short_name": "BrightLine",
+  "description": "Süni intellekt dəstəkli TQDK və Magistr hazırlıq platforması. AI müəllim, sonsuz sual generatoru, fərdi hazırlıq planı.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAF7",
+  "theme_color": "#1E3A8A",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "az",
+  "dir": "ltr",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "AI Müəllim",
+      "short_name": "Müəllim",
+      "description": "AI Müəllim ilə söhbət",
+      "url": "/?shortcut=tutor"
+    },
+    {
+      "name": "Sual Generatoru",
+      "short_name": "Sual",
+      "description": "Yeni suallar yarat",
+      "url": "/?shortcut=generator"
+    },
+    {
+      "name": "İmtahan Simulyatoru",
+      "short_name": "İmtahan",
+      "description": "Mock imtahan başlat",
+      "url": "/?shortcut=exam"
+    },
+    {
+      "name": "Panel",
+      "short_name": "Panel",
+      "description": "Dashboard-a get",
+      "url": "/?shortcut=dashboard"
+    }
+  ],
+  "prefer_related_applications": false
+}

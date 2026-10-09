@@ -1,0 +1,7 @@
+build/
+.gradle/
+db/
+*.log
+.idea/
+*.iml
+application-local.yml
